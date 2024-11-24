@@ -8,8 +8,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 const options = {
-    key: fs.readFileSync(path.join(__dirname, '../certs/private.key')),
-    cert: fs.readFileSync(path.join(__dirname, '../certs/certificate.crt'))
+    key: fs.readFileSync(path.join(__dirname, '../certs/localhost+1-key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, '../certs/localhost+1.pem'))
 };
 
 const server = https.createServer(options, app);

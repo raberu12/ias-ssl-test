@@ -1,9 +1,13 @@
 #!/bin/bash
 
-openssl req -x509 \
-    -nodes \
-    -days 365 \
-    -newkey rsa:2048 \
-    -keyout private.key \
-    -out certificate.crt\
-    -config cert.conf
+# Install mkcert if not already installed
+if ! command -v mkcert &> /dev/null; then
+    echo "mkcert not found. Please install it."
+    exit 1
+fi
+
+# Generate and install local CA if not already done
+mkcert -install
+
+# Generate certificates for localhost and host.docker.internal
+mkcert localhost host.docker.internal
